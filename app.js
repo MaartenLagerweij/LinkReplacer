@@ -23,11 +23,13 @@ document.getElementById('excel-button').addEventListener('click', ()=> {
 })
 
 
-
 function myFunction(){
-    const str = document.getElementById('text-input').value
+    let str = document.getElementById('text-input').value
+    const urls = str.match(/(?<=href=").+?(?=")/g)
+    console.log(urls)
+    urls.forEach(url=> {
+        //This will replace every url that was matched in str, replace it with the corresponding url from the dataObject
+        if(dataObject[url])str = str.replaceAll(url,dataObject[url]) 
+    })
     document.getElementById('output').innerHTML = str
-    
-    
-
 }
