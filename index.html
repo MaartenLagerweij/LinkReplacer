@@ -16,9 +16,11 @@
     <div class="container">
         <div class="row">
           <div class="col">
-            <textarea class="form-control" rows="10" type="text" id="text-input" name="data-input" placeholder="Paste input"></textarea>
+            <textarea class="form-control" rows="15" type="text" id="text-input" name="data-input" placeholder="Paste input"></textarea>
             <br/>
-            <button onClick="myFunction()" id="btn-1" class="btn btn-secondary">Submit</button>
+            <input class="form-control" type="file" id="excel-input" accept=".csv">
+            <br/>
+            <button onClick="submitFunction()" id="btn-1" class="btn btn-secondary">Submit</button>
           </div>
           <div class="col">
             <div id="output"></div>
@@ -26,8 +28,6 @@
         </div>
     </div>
     
-    <input class="form-control" type="file" id="excel-input" accept=".csv">
-    <button id="excel-button">Submit</button>
 </body>
         <script src="app.js"></script>
 </html>

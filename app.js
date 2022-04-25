@@ -5,7 +5,10 @@ document.getElementById('excel-input').addEventListener('change', (event)=> {
     selectedFile = event.target.files[0];
 })
 
-document.getElementById('excel-button').addEventListener('click', ()=> {
+function submitFunction(){
+    let str = document.getElementById('text-input').value
+    const urls = str.match(/(?<=href=").+?(?=")/g)
+
     if(selectedFile){
         let fileReader = new FileReader();
         fileReader.readAsBinaryString(selectedFile);
@@ -18,15 +21,13 @@ document.getElementById('excel-button').addEventListener('click', ()=> {
                 //This will save everything from column A in the .csv as a property and column B as the value:
                 dataObject[originalURL] = replaceURL
             })
+            //Call the function replaceURLS when the previous function is done
+            replaceURLS(urls,str)
         }
     }
-})
+}
 
-
-function myFunction(){
-    let str = document.getElementById('text-input').value
-    const urls = str.match(/(?<=href=").+?(?=")/g)
-    console.log(urls)
+function replaceURLS(urls,str){
     urls.forEach(url=> {
         //This will replace every url that was matched in str, replace it with the corresponding url from the dataObject
         if(dataObject[url])str = str.replaceAll(url,dataObject[url]) 
