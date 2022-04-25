@@ -13,9 +13,10 @@ document.getElementById('excel-button').addEventListener('click', ()=> {
             data = event.target.result
             dataArray = data.split(/\r?\n/);
             dataArray.forEach(element => {
-                let arr = element.split(',')
+                let originalURL = element.match(/.+?(?=,)/)[0]
+                let replaceURL = element.replace(originalURL+',"',"").replace(/"$/,'')
                 //This will save everything from column A in the .csv as a property and column B as the value:
-                dataObject[arr[0]] = arr[1]
+                dataObject[originalURL] = replaceURL
             })
         }
     }
