@@ -7,8 +7,8 @@ document.getElementById('excel-input').addEventListener('change', (event)=> {
 
 function submitFunction(){
     
-    if(!selectedFile) document.getElementById('csv-message').classList.remove('csv-display')
-    if(selectedFile) document.getElementById('csv-message').classList.add('csv-display')   
+    if(!selectedFile) return document.getElementById('csv-message').classList.remove('csv-display')
+    if(selectedFile) document.getElementById('csv-message').classList.add('csv-display')
 
     let str = document.getElementById('text-input').value
     const urls = str.match(/(?<=href=").+?(?=")/g)
@@ -38,3 +38,9 @@ function replaceURLS(urls,str){
     })
     document.getElementById('output').innerHTML = str
 }
+
+function copyToClipboard(){
+    var outputVal = document.getElementById('output');
+    navigator.clipboard.writeText(outputVal.innerHTML);
+}
+

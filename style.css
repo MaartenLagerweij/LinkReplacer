@@ -4,6 +4,11 @@ h1 {
     padding: 15px;
 }
 
+button {
+    width: 100%;
+    margin-bottom: 20px !important;
+}
+
 .csv-message {
     margin-top: 10px;
     text-decoration: underline;
