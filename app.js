@@ -6,6 +6,10 @@ document.getElementById('excel-input').addEventListener('change', (event)=> {
 })
 
 function submitFunction(){
+    
+    if(!selectedFile) document.getElementById('csv-message').classList.remove('csv-display')
+    if(selectedFile) document.getElementById('csv-message').classList.add('csv-display')   
+
     let str = document.getElementById('text-input').value
     const urls = str.match(/(?<=href=").+?(?=")/g)
 
