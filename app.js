@@ -7,11 +7,16 @@ document.getElementById('excel-input').addEventListener('change', (event)=> {
 
 function submitFunction(){
     
-    if(!selectedFile) return document.getElementById('csv-message').classList.remove('csv-display')
-    if(selectedFile) document.getElementById('csv-message').classList.add('csv-display')
+    if(!selectedFile) return document.getElementById('csv-message').classList.remove('display-none-button')
+    if(selectedFile) {
+        document.getElementById('csv-message').classList.add('display-none-button')
+        document.getElementById('copyToClipboard').classList.remove('display-none-button')
+    }
 
     let str = document.getElementById('text-input').value
+    if(!/(?<=href=").+?(?=")/.test(str)) return document.getElementById('no-links-message').classList.remove('display-none-button')
     const urls = str.match(/(?<=href=").+?(?=")/g)
+    document.getElementById('no-links-message').classList.add('display-none-button')
 
     if(selectedFile){
         let fileReader = new FileReader();
