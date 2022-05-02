@@ -30,3 +30,12 @@ button {
 #copyToClipboard:hover {
     background-color: #28a745
 }
+
+.container .col {
+    background-color: #f7f7f9;
+    padding-top: 15px;
+    border: 1px solid #dededf;
+    border-radius: 1%;
+    margin: 3px;
+    margin-bottom: 20px;
+}

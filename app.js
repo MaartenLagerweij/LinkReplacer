@@ -1,5 +1,5 @@
 let selectedFile,data;
-const dataObject = {}
+const dataObject = {};
 
 document.getElementById('excel-input').addEventListener('change', (event)=> {
     selectedFile = event.target.files[0];
@@ -26,7 +26,8 @@ function submitFunction(){
             dataArray = data.split(/\r?\n/);
             dataArray.forEach(element => {
                 let originalURL = element.match(/.+?(?=,)/)[0]
-                let replaceURL = element.replace(originalURL+',"',"").replace(/"$/,'')
+                let replaceURL = element.replace(originalURL+',',"");
+                replaceURL = /^"/.test(replaceURL) ? replaceURL.replace(/^"/,"").replace(/"$/,'') : replaceURL
                 //This will save everything from column A in the .csv as a property and column B as the value:
                 dataObject[originalURL] = replaceURL
             })
