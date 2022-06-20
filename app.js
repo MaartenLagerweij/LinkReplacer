@@ -15,7 +15,9 @@ function submitFunction(){
 
     let str = document.getElementById('text-input').value
     if(!/(?<=href=").+?(?=")/.test(str)) return document.getElementById('no-links-message').classList.remove('display-none-button')
-    const urls = str.match(/(?<=href=").+?(?=")/g)
+    let urlsMatched = str.match(/(?<=href=["']).+?(?=["'])/g);
+    let urls = [];
+    urlsMatched.forEach(url => urls.includes(url) ? null : urls.push(url));
     document.getElementById('no-links-message').classList.add('display-none-button')
 
     if(selectedFile){
@@ -38,9 +40,13 @@ function submitFunction(){
 }
 
 function replaceURLS(urls,str){
+    
     urls.forEach(url=> {
         //This will replace every url that was matched in str, replace it with the corresponding url from the dataObject
-        if(dataObject[url])str = str.replaceAll(url,dataObject[url]) 
+        if(dataObject[url]){
+            str = str.replaceAll(`"${url}"`,`"${dataObject[url]}"`)
+            str = str.replaceAll(`'${url}'`,`"${dataObject[url]}"`)
+        }
     })
     document.getElementById('output').innerHTML = str
 }
